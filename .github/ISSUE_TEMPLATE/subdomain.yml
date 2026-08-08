@@ -1,0 +1,31 @@
+name: Subdomain request
+description: Request a free is-your.app subdomain
+title: "Subdomain request"
+labels: ["request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request one free `*.is-your.app` subdomain. Edit the JSON code block below and keep it inside the triple backticks.
+
+        Available record types: `A`, `AAAA`, `CNAME`, `TXT`.
+        Set `public` to `true` only if you want it listed in the public directory.
+        `displayName` is optional and only used when `public` is `true`.
+
+  - type: textarea
+    id: request
+    attributes:
+      label: Subdomain request (JSON)
+      description: Paste the completed JSON block below.
+      value: |
+        ```json
+        {
+          "name": "myname",
+          "type": "CNAME",
+          "target": "example.github.io",
+          "public": false,
+          "displayName": "Anonymous"
+        }
+        ```
+    validations:
+      required: true
