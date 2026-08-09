@@ -6,26 +6,58 @@ body:
   - type: markdown
     attributes:
       value: |
-        Request one free `*.is-your.app` subdomain. Edit the JSON code block below and keep it inside the triple backticks.
+        Request one free `*.is-your.app` subdomain. Fill in the form below.
 
         Available record types: `A`, `AAAA`, `CNAME`, `TXT`.
-        Set `public` to `true` only if you want it listed in the public directory.
-        `displayName` is optional and only used when `public` is `true`.
+        Choose `Public: Yes` only if you want it listed in the public directory.
+        `Display name` is optional and only used when `Public` is `Yes`.
 
-  - type: textarea
-    id: request
+  - type: input
+    id: name
     attributes:
-      label: Subdomain request (JSON)
-      description: Paste the completed JSON block below.
-      value: |
-        ```json
-        {
-          "name": "myname",
-          "type": "CNAME",
-          "target": "example.github.io",
-          "public": false,
-          "displayName": "Anonymous"
-        }
-        ```
+      label: "name"
+      description: "The subdomain you want (e.g., myname)"
+      placeholder: "myname"
     validations:
       required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Record type"
+      description: "What type of DNS record should it be?"
+      options:
+        - "CNAME"
+        - "A"
+        - "AAAA"
+        - "TXT"
+    validations:
+      required: true
+
+  - type: textarea
+    id: target
+    attributes:
+      label: "Target"
+      description: "Where should it point? (IP, hostname, or TXT value)"
+      placeholder: "example.github.io"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: public
+    attributes:
+      label: "Public"
+      description: "Should this subdomain appear in the public directory?"
+      options:
+        - "No (private)"
+        - "Yes (public)"
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: displayName
+    attributes:
+      label: "Display name"
+      description: "Public display name (only used if Public is Yes)"
+      placeholder: "Anonymous"
